@@ -50,7 +50,7 @@ public class TestMappingController {
     }
 
     @PostMapping("/test-mapping/return-json")
-    public TestReturnDto testReturnJson(@RequestParam String title) {
+    public TestReturnDto testReturnJson(@RequestParam("title") String title) {
         return new TestReturnDto()
                 .setTitle(title)
                 .setDescription("TEST DESCRIPTION");
