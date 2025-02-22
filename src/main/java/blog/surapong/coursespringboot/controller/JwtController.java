@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,8 @@ import java.util.Date;
 @RestController
 public class JwtController {
 
-    public static final String secretKey = "yhuZs0OfR6mzK9Zu7Y6mDHueqYFrLN45";
+    @Value("${app.jwt.secret}")
+    public String  secretKey;
 
     @GetMapping("/jwt/create-token")
     public String createJwtToken() {
