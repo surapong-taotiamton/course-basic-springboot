@@ -4,11 +4,13 @@ import blog.surapong.coursespringboot.controller.dto.BookCreateRequestDto;
 import blog.surapong.coursespringboot.controller.dto.BookUpdateRequestDto;
 import blog.surapong.coursespringboot.entity.Book;
 import blog.surapong.coursespringboot.service.BookService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class BookController {
 
@@ -17,7 +19,9 @@ public class BookController {
 
     @GetMapping("/book/{id}")
     public ResponseEntity<Book> read(@PathVariable("id") String id) {
+        log.info("####### BEFORE call bookService.get");
         Book book = bookService.get(id);
+        log.info("####### AFTER call bookService.get");
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
