@@ -3,6 +3,7 @@ package blog.surapong.coursespringboot.controller;
 import blog.surapong.coursespringboot.controller.dto.BookCreateRequestDto;
 import blog.surapong.coursespringboot.controller.dto.BookUpdateRequestDto;
 import blog.surapong.coursespringboot.entity.Book;
+import blog.surapong.coursespringboot.repository.BookRepository;
 import blog.surapong.coursespringboot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @GetMapping("/book/{id}")
     public ResponseEntity<Book> read(@PathVariable("id") String id) {
