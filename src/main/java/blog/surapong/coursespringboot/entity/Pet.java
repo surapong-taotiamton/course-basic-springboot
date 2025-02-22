@@ -13,4 +13,5 @@ public class Pet {
     @Id
     private String petId;
     private String petName;
+    private Integer age;
 }
