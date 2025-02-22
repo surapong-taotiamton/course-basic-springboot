@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class TestMappingController {
 
+    public TestMappingController() {
+        log.info("############# In constructor : TestMappingController");
+    }
+
 
     @GetMapping("/test-mapping/request-param")
     public void getRequestParam(@RequestParam("fname") String firstname ) {
