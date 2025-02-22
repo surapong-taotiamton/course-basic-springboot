@@ -17,14 +17,14 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    @Cacheable(cacheNames = "book", key = "#id", condition = "#result != null")
+    @Cacheable(value = "book", key = "#id")
     public Book get(String id) {
         log.info("################# In case cache miss at key : {}", id);
         return bookRepository.findById(id).orElseThrow();
     }
 
 
-    @CachePut(value = "book", key = "#result.id")
+    @CachePut(value = "book", key = "#result.bookId")
     public Book create(String bookName, Long noPage) {
         Book book = new Book()
                 .setBookId(UUID.randomUUID().toString())
@@ -33,7 +33,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    @CachePut(cacheNames = "book", key = "#result.id")
+    @CachePut(value = "book", key = "#result.bookId")
     public Book update(Book book) {
         Book bookInDatabase = bookRepository.findById(book.getBookId()).orElseThrow();
         bookInDatabase
@@ -43,7 +43,7 @@ public class BookService {
         return bookRepository.save(bookInDatabase);
     }
 
-    @CacheEvict(cacheNames = "book", key = "#id")
+    @CacheEvict(value = "book", key = "#id")
     public void delete(String id) {
         bookRepository.deleteById(id);
     }
