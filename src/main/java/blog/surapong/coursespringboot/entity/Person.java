@@ -4,10 +4,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tab_person")
-public class Person {
+@Accessors(chain = true)
+@Data
+public class Person implements Serializable {
 
     @Id
     @Column(name = "person_id")
